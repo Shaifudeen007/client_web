@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Dark theme - matching recapafteruse.co.uk */
+   --background: 0 0% 0%;      /* Pure black */
+--foreground: 0 0% 100%;    /* Pure white */
+
+
+    --card: 220 13% 10%;
+    --card-foreground: 40 33% 94%;
+
+    --popover: 220 13% 10%;
+    --popover-foreground: 40 33% 94%;
+
+    --primary: 40 33% 94%;
+    --primary-foreground: 220 13% 10%;
+
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 40 33% 94%;
+
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 30 100% 65%;
+    --accent-foreground: 220 13% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 40 33% 94%;
+
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 40 33% 94%;
+
+    --radius: 0rem;
+
+    /* Custom colors for projects */
+    --project-shopify: 145 63% 49%;
+    --project-icg: 217 91% 60%;
+    --project-medtrics: 280 67% 47%;
+    --project-starberry: 350 100% 65%;
+    --project-ascot: 197 71% 73%;
+    --project-plantpower: 120 39% 44%;
+
+    --sidebar-background: 220 13% 10%;
+    --sidebar-foreground: 40 33% 94%;
+    --sidebar-primary: 40 33% 94%;
+    --sidebar-primary-foreground: 220 13% 10%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 40 33% 94%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 40 33% 94%;
+  }
+
+  .dark {
+    --background: 220 13% 10%;
+    --foreground: 40 33% 94%;
+    --card: 220 13% 10%;
+    --card-foreground: 40 33% 94%;
+    --popover: 220 13% 10%;
+    --popover-foreground: 40 33% 94%;
+    --primary: 40 33% 94%;
+    --primary-foreground: 220 13% 10%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 40 33% 94%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 30 100% 65%;
+    --accent-foreground: 220 13% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 33% 94%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 40 33% 94%;
+    --sidebar-background: 220 13% 10%;
+    --sidebar-foreground: 40 33% 94%;
+    --sidebar-primary: 40 33% 94%;
+    --sidebar-primary-foreground: 220 13% 10%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 40 33% 94%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 40 33% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+@keyframes heroReveal {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatText {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes glowPulse {
+  0%,100% {
+    text-shadow: 0 0 10px rgba(255,255,255,0.2),
+                 0 0 20px rgba(255,255,255,0.2);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255,255,255,0.6),
+                 0 0 40px rgba(255,255,255,0.4);
+  }
+}
+
