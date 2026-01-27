@@ -1,15 +1,17 @@
+/* ✅ IMPORTS MUST BE FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ✅ Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+/* ================= BASE THEME VARIABLES ================= */
 @layer base {
   :root {
-    /* Dark theme - matching recapafteruse.co.uk */
-   --background: 0 0% 0%;      /* Pure black */
---foreground: 0 0% 100%;    /* Pure white */
-
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
     --card: 220 13% 10%;
     --card-foreground: 40 33% 94%;
@@ -38,7 +40,6 @@
 
     --radius: 0rem;
 
-    /* Custom colors for projects */
     --project-shopify: 145 63% 49%;
     --project-icg: 217 91% 60%;
     --project-medtrics: 280 67% 47%;
@@ -87,6 +88,8 @@
   }
 }
 
+
+/* ================= GLOBAL BASE STYLES ================= */
 @layer base {
   * {
     @apply border-border;
@@ -103,35 +106,33 @@
   }
 }
 
+
+/* ================= UTILITIES ================= */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
 
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-
+/* ================= CUSTOM SCROLLBAR ================= */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--muted));
   border-radius: 4px;
 }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
 
-/* Selection color */
+/* ================= SELECTION ================= */
 ::selection {
   background: hsl(var(--primary) / 0.3);
   color: hsl(var(--foreground));
 }
+
+
+/* ================= ANIMATIONS ================= */
 @keyframes heroReveal {
   0% { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -153,4 +154,3 @@
                  0 0 40px rgba(255,255,255,0.4);
   }
 }
-
