@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Calendar, MapPin, ChevronRight, Briefcase } from "lucide-react";
-import ElectricBorder from "@/components/ElectricBorder"; // <-- ADD THIS
 
 const experiences = [
   {
@@ -55,7 +54,6 @@ const ExperienceSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
@@ -130,88 +128,77 @@ const ExperienceSection = () => {
               initial={{ opacity: 0, y: 20, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="relative group"
+              className="relative"
             >
-              {/* 🔥 ELECTRIC BORDER WRAPPER */}
-              <ElectricBorder
-                color="#e81cff"
-                speed={1.4}
-                chaos={0.2}
-                borderRadius={20}
-                className="rounded-2xl"
-              >
-                {/* Glow blob */}
-                <motion.div
-                  className="absolute top-0 left-0 w-40 h-40 rounded-full blur-3xl pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(232,28,255,0.55) 0%, transparent 70%)",
-                  }}
-                  animate={{ opacity: [0.25, 0.5, 0.25], scale: [1, 1.1, 1] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+              {/* Glow blob */}
+              <motion.div
+                className="absolute top-0 left-0 w-40 h-40 rounded-full blur-3xl pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(232,28,255,0.55) 0%, transparent 70%)",
+                }}
+                animate={{ opacity: [0.25, 0.5, 0.25], scale: [1, 1.1, 1] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
 
-                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#e81cff] via-[#e81cff]/50 to-transparent rounded-l-2xl blur-sm" />
+              <div className="relative bg-black p-6 rounded-2xl border border-[#e81cff]/30 backdrop-blur-xl shadow-lg hover:shadow-[0_0_40px_rgba(232,28,255,0.6)] transition-all duration-500">
+                <div className="w-10 h-10 rounded-xl bg-[#e81cff] flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(232,28,255,0.9)]">
+                  <Briefcase className="text-black" size={18} />
+                </div>
 
-                <div className="relative bg-black p-6 rounded-2xl border border-[#e81cff]/30 backdrop-blur-xl shadow-lg group-hover:shadow-[0_0_40px_rgba(232,28,255,0.6)] transition-all duration-500">
-                  <div className="w-10 h-10 rounded-xl bg-[#e81cff] flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(232,28,255,0.9)]">
-                    <Briefcase className="text-black" size={18} />
+                <h3 className="text-xl font-bold mb-1 text-white">
+                  {experiences[activeIndex].title}
+                </h3>
+
+                <p className="text-[#e81cff] font-semibold mb-4">
+                  {experiences[activeIndex].company}
+                </p>
+
+                <div className="flex flex-wrap gap-3 mb-4 text-white/60 text-sm">
+                  <div className="flex items-center gap-1">
+                    <Calendar size={14} />
+                    {experiences[activeIndex].period}
                   </div>
-
-                  <h3 className="text-xl font-bold mb-1 text-white">
-                    {experiences[activeIndex].title}
-                  </h3>
-
-                  <p className="text-[#e81cff] font-semibold mb-4">
-                    {experiences[activeIndex].company}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 mb-4 text-white/60 text-sm">
-                    <div className="flex items-center gap-1">
-                      <Calendar size={14} />
-                      {experiences[activeIndex].period}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MapPin size={14} />
-                      {experiences[activeIndex].location}
-                    </div>
-                  </div>
-
-                  <p className="text-white/70 leading-relaxed">
-                    {experiences[activeIndex].description}
-                  </p>
-
-                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
-                    <button
-                      onClick={() =>
-                        setActiveIndex(Math.max(0, activeIndex - 1))
-                      }
-                      disabled={activeIndex === 0}
-                      className="flex items-center gap-1 text-sm text-white/70 disabled:opacity-30"
-                    >
-                      <ChevronRight className="rotate-180" size={14} />
-                      Prev
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        setActiveIndex(
-                          Math.min(experiences.length - 1, activeIndex + 1)
-                        )
-                      }
-                      disabled={activeIndex === experiences.length - 1}
-                      className="flex items-center gap-1 text-sm text-white/70 disabled:opacity-30"
-                    >
-                      Next
-                      <ChevronRight size={14} />
-                    </button>
+                  <div className="flex items-center gap-1">
+                    <MapPin size={14} />
+                    {experiences[activeIndex].location}
                   </div>
                 </div>
-              </ElectricBorder>
+
+                <p className="text-white/70 leading-relaxed">
+                  {experiences[activeIndex].description}
+                </p>
+
+                <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/10">
+                  <button
+                    onClick={() =>
+                      setActiveIndex(Math.max(0, activeIndex - 1))
+                    }
+                    disabled={activeIndex === 0}
+                    className="flex items-center gap-1 text-sm text-white/70 disabled:opacity-30"
+                  >
+                    <ChevronRight className="rotate-180" size={14} />
+                    Prev
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      setActiveIndex(
+                        Math.min(experiences.length - 1, activeIndex + 1)
+                      )
+                    }
+                    disabled={activeIndex === experiences.length - 1}
+                    className="flex items-center gap-1 text-sm text-white/70 disabled:opacity-30"
+                  >
+                    Next
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>

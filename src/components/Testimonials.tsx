@@ -42,6 +42,15 @@ const testimonials = [
       'https://www.linkedin.com/posts/yogeshwaran-d_github-yogeshcoder9865atmproject-activity-7331933103688441856-8zNe',
   },
   {
+  name: 'Vijay Baskar',
+  role: 'Portfolio & Internship Journey',
+  text:
+    'Got a call for an internship offer & launched my tech portfolio! I built a dedicated space showcasing my IoT, embedded systems & hardware projects that reflect my hands-on design mindset. Grateful to my trainer B S RANJITH for all the support and guidance. If you’re into tech, hardware, or IoT, let’s connect and explore ideas!',
+  link:
+    'https://www.linkedin.com/posts/vijaybaskar0305_portfolio-internshipjourney-embeddedsystems-activity-7335152846755000320-r5sd',
+},
+
+  {
     name: 'Tharvesh',
     role: 'Java & DSA Learning',
     text:

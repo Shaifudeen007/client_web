@@ -6,7 +6,7 @@ const navItems = [
   { name: "About", id: "about", Icon: User },
   { name: "Experience", id: "experience", Icon: Briefcase },
   { name: "Education", id: "education", Icon: GraduationCap },
-  { name: "Awards", id: "awards-swap", Icon: Award },
+  { name: "Awards", id: "awards", Icon: Award },
   { name: "Contact", id: "contact", Icon: Mail },
 ];
 
