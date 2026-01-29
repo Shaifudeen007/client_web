@@ -3,15 +3,19 @@ import { useScrollPosition } from "@/hooks/use-parallax";
 
 const HeroSection = () => {
   const scrollY = useScrollPosition();
-  const [loaded, setLoaded] = useState(false);
   const [swapWord, setSwapWord] = useState(false);
+  const [strike, setStrike] = useState(false);
+  const [hideStrike, setHideStrike] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 200);
-    const swap = setTimeout(() => setSwapWord(true), 3000); // word swap after 3s
+    const strikeTimer = setTimeout(() => setStrike(true), 2400);   // draw line
+    const swapTimer = setTimeout(() => setSwapWord(true), 3000);   // change word
+    const hideTimer = setTimeout(() => setHideStrike(true), 3600); // remove line
+
     return () => {
-      clearTimeout(t);
-      clearTimeout(swap);
+      clearTimeout(strikeTimer);
+      clearTimeout(swapTimer);
+      clearTimeout(hideTimer);
     };
   }, []);
 
@@ -27,21 +31,21 @@ const HeroSection = () => {
         transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
       }}
     >
-      <div
-        className="w-full max-w-4xl mx-auto text-white font-extrabold text-center"
-        style={{ animation: "heroReveal 1.2s ease forwards" }}
-      >
-        <h1
-          className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight"
-          style={{
-            animation:
-              "floatText 6s ease-in-out infinite, glowPulse 4s ease-in-out infinite",
-          }}
-        >
-          " Growth Comes From{" "}
+      <div className="w-full max-w-4xl mx-auto text-white font-extrabold text-center">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight">
+          Growth Comes From{" "}
           <span className="relative inline-block">
-            
-            {/* Chance (fades out smoothly) */}
+
+            {/* STRIKE LINE */}
+            <span
+              className={`absolute left-0 top-1/2 h-[3px] bg-white origin-left transition-all duration-500 ease-in-out
+                ${strike && !hideStrike ? "scale-x-100 opacity-100" : ""}
+                ${hideStrike ? "scale-x-0 opacity-0" : "scale-x-0 opacity-100"}
+              `}
+              style={{ width: "100%" }}
+            />
+
+            {/* OLD WORD */}
             <span
               className={`transition-all duration-500 ${
                 swapWord ? "opacity-0 blur-sm" : "opacity-100"
@@ -50,7 +54,7 @@ const HeroSection = () => {
               Chance
             </span>
 
-            {/* Change (fades in smoothly) */}
+            {/* NEW WORD */}
             <span
               className={`absolute left-0 top-0 transition-all duration-500 ${
                 swapWord
@@ -62,7 +66,6 @@ const HeroSection = () => {
             </span>
 
           </span>
-        <break> </break>"
         </h1>
       </div>
     </section>
