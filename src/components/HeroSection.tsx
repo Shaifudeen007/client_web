@@ -3,18 +3,18 @@ import { useScrollPosition } from "@/hooks/use-parallax";
 
 const HeroSection = () => {
   const scrollY = useScrollPosition();
-  const [swapWord, setSwapWord] = useState(false);
+  const [morph, setMorph] = useState(false);
   const [strike, setStrike] = useState(false);
   const [hideStrike, setHideStrike] = useState(false);
 
   useEffect(() => {
-    const strikeTimer = setTimeout(() => setStrike(true), 2400);   // draw line
-    const swapTimer = setTimeout(() => setSwapWord(true), 3000);   // change word
-    const hideTimer = setTimeout(() => setHideStrike(true), 3600); // remove line
+    const strikeTimer = setTimeout(() => setStrike(true), 2000);
+    const morphTimer = setTimeout(() => setMorph(true), 2600);
+    const hideTimer = setTimeout(() => setHideStrike(true), 3400);
 
     return () => {
       clearTimeout(strikeTimer);
-      clearTimeout(swapTimer);
+      clearTimeout(morphTimer);
       clearTimeout(hideTimer);
     };
   }, []);
@@ -28,44 +28,67 @@ const HeroSection = () => {
       style={{
         opacity: heroOpacity,
         transform: `translateY(${scrollY * -0.08}px)`,
-        transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
       }}
     >
-      <div className="w-full max-w-4xl mx-auto text-white font-extrabold text-center">
-        <h1 className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight">
+      <div className="w-full max-w-4xl mx-auto text-center font-extrabold">
+        <h1
+          className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight"
+          style={{
+            color: "#ffffff",
+            WebkitTextStroke: "0.3px rgba(255,255,255,0.5)",
+            textShadow: `
+              0 0 3px rgba(255,255,255,0.6),
+              0 0 6px rgba(255,255,255,0.4),
+              0 0 12px rgba(120,180,255,0.25)
+            `,
+          }}
+        >
+          <span className="text-white/40 mr-2">“</span>
+
           Growth Comes From{" "}
-          <span className="relative inline-block">
 
-            {/* STRIKE LINE */}
-            <span
-              className={`absolute left-0 top-1/2 h-[3px] bg-white origin-left transition-all duration-500 ease-in-out
+          <span className="inline-flex relative">
+            <span>Chan</span>
+
+            {/* Morph Letter Slot */}
+            <span className="relative inline-block w-[0.6em] align-baseline">
+
+              {/* STRIKE ONLY HERE */}
+              <span
+                className={`absolute left-0 top-1/2 h-[3px] bg-white origin-left
+                transition-all duration-700 ease-in-out
                 ${strike && !hideStrike ? "scale-x-100 opacity-100" : ""}
-                ${hideStrike ? "scale-x-0 opacity-0" : "scale-x-0 opacity-100"}
-              `}
-              style={{ width: "100%" }}
-            />
+                ${hideStrike ? "scale-x-0 opacity-0" : "scale-x-0 opacity-0"}`}
+                style={{ width: "100%" }}
+              />
 
-            {/* OLD WORD */}
-            <span
-              className={`transition-all duration-500 ${
-                swapWord ? "opacity-0 blur-sm" : "opacity-100"
-              }`}
-            >
-              Chance
+              {/* c */}
+              <span
+                className={`absolute left-0 top-0 transition-all duration-700
+                ease-[cubic-bezier(.65,0,.35,1)]
+                ${morph
+                  ? "opacity-0 -translate-y-5 rotate-[-90deg] scale-50"
+                  : "opacity-100 translate-y-0 rotate-0 scale-100"}`}
+              >
+                c
+              </span>
+
+              {/* g */}
+              <span
+                className={`absolute left-0 top-0 transition-all duration-700
+                ease-[cubic-bezier(.65,0,.35,1)]
+                ${morph
+                  ? "opacity-100 translate-y-0 rotate-0 scale-100"
+                  : "opacity-0 translate-y-5 rotate-90 scale-150"}`}
+              >
+                g
+              </span>
             </span>
 
-            {/* NEW WORD */}
-            <span
-              className={`absolute left-0 top-0 transition-all duration-500 ${
-                swapWord
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-2"
-              }`}
-            >
-              Change
-            </span>
-
+            <span>e</span>
           </span>
+
+          <span className="text-white/40 ml-2">”</span>
         </h1>
       </div>
     </section>

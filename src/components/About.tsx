@@ -12,20 +12,20 @@ const stats = [
 ];
 
 const statVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      delay: i * 0.15,
+      delay: i * 0.12,
       type: "spring",
       stiffness: 120,
-      damping: 12,
+      damping: 14,
     },
   }),
   float: {
-    y: [0, -6, 0],
+    y: [0, -4, 0],
     transition: {
       duration: 3,
       repeat: Infinity,
@@ -41,9 +41,9 @@ export default function AboutSection() {
     <section
       ref={ref}
       id="about"
-      className="relative min-h-screen py-24 px-6 bg-transparent text-white flex items-center overflow-hidden"
+      className="relative min-h-screen py-24 px-6 text-white flex items-center overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
 
         {/* PHOTO */}
         <motion.div
@@ -65,7 +65,6 @@ export default function AboutSection() {
               transition={{ duration: 0.4 }}
             />
 
-            {/* Glare Sweep */}
             <motion.div
               animate={{ x: ["-120%", "120%"] }}
               transition={{
@@ -100,15 +99,14 @@ export default function AboutSection() {
             Assistant Professor · Technical Trainer · Scrum Master
           </p>
 
-          <p className="text-white/70 leading-relaxed max-w-xl text-sm sm:text-base mb-10">
-            Passionate Educator And Tech Lead With Expertise In Computer Science,
-            Guiding Students In Programming, Problem-Solving, And Real-Time
-            Application Building. Based In Tamil Nadu, India.
+          {/* UPDATED ABOUT TEXT */}
+          <p className="text-white/70 leading-relaxed max-w-xl text-sm sm:text-base mb-10 text-justify">
+            Passionate Educator and Technology Lead in Computer Science, mentoring students in programming, problem-solving, and real-time application development. Focused on connecting academic learning with industry practice while fostering innovation, critical thinking, and strong hands-on technical skills.
           </p>
 
-          {/* STATS GRID (SMALL VERSION) */}
+          {/* SMALLER STATS GRID */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3"
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
           >
@@ -118,11 +116,10 @@ export default function AboutSection() {
                 custom={index}
                 variants={statVariants}
                 animate={inView ? ["visible", "float"] : "hidden"}
-                whileHover={{ y: -6, scale: 1.03 }}
+                whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="relative rounded-xl p-[2px] overflow-hidden"
+                className="relative rounded-lg p-[1.5px] overflow-hidden"
               >
-                {/* Animated Gradient Border */}
                 <motion.div
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -132,28 +129,26 @@ export default function AboutSection() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute inset-0 rounded-xl
+                  className="absolute inset-0 rounded-2xl
                     bg-[linear-gradient(90deg,#e81cff,#40c9ff,#e81cff)]
                     bg-[length:200%_200%] blur-[1px]"
                 />
 
-                {/* Small Card */}
                 <div
-                  className="relative z-10 bg-black rounded-xl p-3 sm:p-4
+                  className="relative z-10 bg-black rounded-2xl p-2.5 sm:p-3
                              flex flex-col justify-center items-center
-                             min-h-[110px] sm:min-h-[125px]
-                             text-center space-y-1.5 sm:space-y-2
-                             border border-white/10"
+                             min-h-[85px] sm:min-h-[95px]
+                             text-center space-y-1 border border-white/10"
                 >
-                  <stat.icon className="text-[#40c9ff] w-5 h-5 sm:w-6 sm:h-6" />
+                  <stat.icon className="text-[#40c9ff] w-4 h-4 sm:w-5 sm:h-5" />
 
                   {stat.value && (
-                    <div className="text-base sm:text-lg font-bold text-gradient">
+                    <div className="text-sm sm:text-base font-bold text-gradient">
                       <DecryptedText text={stat.value} trigger={inView} />
                     </div>
                   )}
 
-                  <p className="text-white/70 text-[10px] sm:text-[11px] leading-snug px-1">
+                  <p className="text-white/70 text-[9px] sm:text-[10px] leading-snug px-1">
                     {stat.label}
                   </p>
                 </div>
