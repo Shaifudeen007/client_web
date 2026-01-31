@@ -68,8 +68,8 @@ const BlurText: React.FC<BlurTextProps> = ({
   const defaultFrom = useMemo(
     () =>
       direction === "top"
-        ? { filter: "blur(10px)", opacity: 0, y: -50 }
-        : { filter: "blur(10px)", opacity: 0, y: 50 },
+        ? { filter: "blur(10px)", opacity: 0, y: -40 }
+        : { filter: "blur(10px)", opacity: 0, y: 40 },
     [direction]
   );
 
@@ -95,7 +95,13 @@ const BlurText: React.FC<BlurTextProps> = ({
   );
 
   return (
-    <p ref={ref} className={className} style={{ display: "flex", flexWrap: "wrap" }}>
+    <p
+      ref={ref}
+      className={className}
+      style={{
+        display: "inline", // ✅ FIX: keeps original text alignment
+      }}
+    >
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
