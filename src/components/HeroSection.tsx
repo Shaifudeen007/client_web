@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useScrollPosition } from "@/hooks/use-parallax";
-import BlurText from "@/components/BlurText"; // ✅ ADDED
+import BlurText from "@/components/BlurText";
 
 const HeroSection = () => {
   const scrollY = useScrollPosition();
@@ -33,7 +33,7 @@ const HeroSection = () => {
     >
       <div className="w-full max-w-4xl mx-auto text-center font-extrabold">
         <h1
-          className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight"
+          className="text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-tight whitespace-nowrap md:whitespace-normal"
           style={{
             color: "#ffffff",
             WebkitTextStroke: "0.3px rgba(255,255,255,0.5)",
@@ -46,7 +46,6 @@ const HeroSection = () => {
         >
           <span className="text-white/40 mr-2">“</span>
 
-          {/* ✅ BLUR TEXT ADDED HERE */}
           <BlurText
             text="Growth Comes From "
             animateBy="words"
@@ -98,7 +97,6 @@ const HeroSection = () => {
         </h1>
       </div>
 
-      {/* SCROLL INDICATOR (UNCHANGED) */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-80">
         <span className="text-white/60 text-xs tracking-widest mb-2">
           SCROLL
