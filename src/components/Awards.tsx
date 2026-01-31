@@ -59,7 +59,7 @@ export default function AwardsDeviceBoxSection() {
   }, []);
 
   return (
-    <section id="awards" className="scroll-mt-20 overflow-hidden">
+    <section id="awards" className="scroll-mt-20 overflow-x-hidden">
       <div className="w-full flex justify-center px-4 sm:px-6 py-8 md:py-12">
         <div className="relative w-full max-w-6xl rounded-3xl p-[2px] bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600">
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 blur-2xl opacity-30"></div>
@@ -121,7 +121,7 @@ export default function AwardsDeviceBoxSection() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9 }}
                           transition={{ duration: 0.35 }}
-                          className="absolute inset-0 -z-10 rounded-[40px]"
+                          className="absolute inset-0 -z-10 rounded-[40px] pointer-events-none"
                           style={{
                             background:
                               "radial-gradient(circle at center, rgba(232,28,255,0.55) 0%, rgba(232,28,255,0.25) 40%, transparent 70%)",
@@ -138,7 +138,7 @@ export default function AwardsDeviceBoxSection() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="absolute inset-0"
+                          className="absolute inset-0 pointer-events-none"
                         >
                           <svg className="absolute" style={{ width: 0, height: 0 }}>
                             <defs>
@@ -201,7 +201,7 @@ export default function AwardsDeviceBoxSection() {
       {/* AWARD MODAL */}
       <AnimatePresence>
         {selectedAward && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setSelectedAward(null)}>
+          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 overflow-y-auto p-4" onClick={() => setSelectedAward(null)}>
             <div className="bg-[#0b0b0f] p-5 sm:p-6 rounded-2xl max-w-md w-full">
               <h3 className="text-[#e81cff] mb-3 text-lg">{selectedAward.title}</h3>
               <img src={selectedAward.image} className="mb-4 rounded-xl w-full" />
@@ -214,7 +214,7 @@ export default function AwardsDeviceBoxSection() {
       {/* DEVICE IMAGE POPUP */}
       <AnimatePresence>
         {selectedImage && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4" onClick={() => setSelectedImage(null)}>
+          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 overflow-y-auto p-4" onClick={() => setSelectedImage(null)}>
             <motion.img src={selectedImage} className="max-w-[95vw] max-h-[85vh] rounded-lg" />
           </motion.div>
         )}
