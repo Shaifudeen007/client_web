@@ -5,9 +5,9 @@ import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 
 // 🔑 YOUR EMAILJS KEYS
-const SERVICE_ID = "service_db2cdjs";
-const TEMPLATE_ID = "template_a2loqxg";
-const PUBLIC_KEY = "x3TA9NHCQM3LW47a4";
+const SERVICE_ID = "service_nrkl082";
+const TEMPLATE_ID = "template_6v9s26m";
+const PUBLIC_KEY = "odG0xVlgaU7BJLZuc";
 
 const containerVariants = {
   hidden: {},
