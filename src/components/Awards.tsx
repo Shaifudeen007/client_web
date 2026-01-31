@@ -59,21 +59,21 @@ export default function AwardsDeviceBoxSection() {
   }, []);
 
   return (
-    <section id="awards" className="scroll-mt-20 overflow-x-hidden">
-      <div className="w-full flex justify-center px-4 sm:px-6 py-8 md:py-12">
+    <section id="awards" className="scroll-mt-20 overflow-hidden">
+      <div className="w-full flex justify-center px-6 py-8 md:py-12">
         <div className="relative w-full max-w-6xl rounded-3xl p-[2px] bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600">
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 blur-2xl opacity-30"></div>
 
-          <div className="relative rounded-3xl bg-[#0b0b0f] p-5 sm:p-8 md:p-10 border border-white/10">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+          <div className="relative rounded-3xl bg-[#0b0b0f] p-8 md:p-10 border border-white/10">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
 
               {/* LEFT SIDE */}
               <div className="text-white space-y-5">
-                <p className="text-[#e81cff] text-xs sm:text-sm uppercase tracking-widest font-semibold">
+                <p className="text-[#e81cff] text-sm uppercase tracking-widest font-semibold">
                   Awards
                 </p>
 
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold">
                   Recognition &{" "}
                   <span className="text-[#e81cff] drop-shadow-[0_0_14px_rgba(232,28,255,0.8)]">
                     Achievements
@@ -87,14 +87,14 @@ export default function AwardsDeviceBoxSection() {
                       key={award.title}
                       onClick={() => setSelectedAward(award)}
                       whileHover={canHover ? { scale: 1.04, boxShadow: "0 0 30px rgba(232,28,255,0.45)" } : {}}
-                      className="group flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-[#e81cff] hover:bg-[#e81cff]/5"
+                      className="group flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/[0.02] cursor-pointer hover:border-[#e81cff] hover:bg-[#e81cff]/5"
                     >
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg border bg-white/5 flex items-center justify-center group-hover:bg-[#e81cff]/20 shrink-0">
-                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#e81cff]" fill="currentColor" />
+                      <div className="w-10 h-10 rounded-lg border bg-white/5 flex items-center justify-center group-hover:bg-[#e81cff]/20">
+                        <Icon className="w-5 h-5 text-[#e81cff]" fill="currentColor" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-sm sm:text-base">{award.title}</h3>
-                        <p className="text-gray-400 text-xs sm:text-sm">{award.description}</p>
+                        <h3 className="font-semibold text-base">{award.title}</h3>
+                        <p className="text-gray-400 text-xs">{award.description}</p>
                       </div>
                     </motion.div>
                   );
@@ -102,7 +102,7 @@ export default function AwardsDeviceBoxSection() {
               </div>
 
               {/* RIGHT DEVICE */}
-              <div className="flex justify-center mt-6 md:mt-0">
+              <div className="flex justify-center">
                 <motion.div
                   onMouseEnter={() => canHover && setIsHovered(true)}
                   onMouseLeave={() => canHover && setIsHovered(false)}
@@ -110,10 +110,12 @@ export default function AwardsDeviceBoxSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="relative z-10 w-[260px] sm:w-[320px] md:w-[420px]"
+                  className="relative z-10"
+                  style={{ width: "420px" }}
                 >
                   <div className="relative w-full" style={{ aspectRatio: "1/1.15" }}>
 
+                    {/* OUTER FRAME GLOW */}
                     <AnimatePresence>
                       {isHovered && (
                         <motion.div
@@ -121,7 +123,7 @@ export default function AwardsDeviceBoxSection() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.9 }}
                           transition={{ duration: 0.35 }}
-                          className="absolute inset-0 -z-10 rounded-[40px] pointer-events-none"
+                          className="absolute inset-0 -z-10 rounded-[40px]"
                           style={{
                             background:
                               "radial-gradient(circle at center, rgba(232,28,255,0.55) 0%, rgba(232,28,255,0.25) 40%, transparent 70%)",
@@ -131,6 +133,7 @@ export default function AwardsDeviceBoxSection() {
                       )}
                     </AnimatePresence>
 
+                    {/* SCREEN ANIMATION */}
                     <AnimatePresence>
                       {isHovered && (
                         <motion.div
@@ -138,7 +141,7 @@ export default function AwardsDeviceBoxSection() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="absolute inset-0 pointer-events-none"
+                          className="absolute inset-0"
                         >
                           <svg className="absolute" style={{ width: 0, height: 0 }}>
                             <defs>
@@ -180,14 +183,19 @@ export default function AwardsDeviceBoxSection() {
                       )}
                     </AnimatePresence>
 
+                    {/* FRAMES */}
                     <img
                       src={deviceFrameWhite}
-                      className={`absolute inset-0 w-full h-full object-contain z-10 transition-opacity duration-300 ${isHovered ? "opacity-0" : "opacity-100"}`}
+                      className={`absolute inset-0 w-full h-full object-contain z-10 transition-opacity duration-300 ${
+                        isHovered ? "opacity-0" : "opacity-100"
+                      }`}
                       draggable={false}
                     />
                     <img
                       src={deviceFrameColor}
-                      className={`absolute inset-0 w-full h-full object-contain z-20 transition-opacity duration-300 ${isHovered ? "opacity-100" : "opacity-0"}`}
+                      className={`absolute inset-0 w-full h-full object-contain z-20 transition-opacity duration-300 ${
+                        isHovered ? "opacity-100" : "opacity-0"
+                      }`}
                       draggable={false}
                     />
                   </div>
@@ -201,9 +209,9 @@ export default function AwardsDeviceBoxSection() {
       {/* AWARD MODAL */}
       <AnimatePresence>
         {selectedAward && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 overflow-y-auto p-4" onClick={() => setSelectedAward(null)}>
-            <div className="bg-[#0b0b0f] p-5 sm:p-6 rounded-2xl max-w-md w-full">
-              <h3 className="text-[#e81cff] mb-3 text-lg">{selectedAward.title}</h3>
+          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80" onClick={() => setSelectedAward(null)}>
+            <div className="bg-[#0b0b0f] p-6 rounded-2xl max-w-md w-full">
+              <h3 className="text-[#e81cff] mb-3">{selectedAward.title}</h3>
               <img src={selectedAward.image} className="mb-4 rounded-xl w-full" />
               <p className="text-gray-400 text-sm">{selectedAward.description}</p>
             </div>
@@ -214,8 +222,8 @@ export default function AwardsDeviceBoxSection() {
       {/* DEVICE IMAGE POPUP */}
       <AnimatePresence>
         {selectedImage && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 overflow-y-auto p-4" onClick={() => setSelectedImage(null)}>
-            <motion.img src={selectedImage} className="max-w-[95vw] max-h-[85vh] rounded-lg" />
+          <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90" onClick={() => setSelectedImage(null)}>
+            <motion.img src={selectedImage} className="max-w-[90vw] max-h-[90vh] rounded-lg" />
           </motion.div>
         )}
       </AnimatePresence>
