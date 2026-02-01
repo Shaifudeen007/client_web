@@ -154,3 +154,18 @@
                  0 0 40px rgba(255,255,255,0.4);
   }
 }
+.college-card {
+  background: linear-gradient(145deg, #14141c, #0d0d12);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.college-card:hover {
+  border: 1px solid rgba(232, 28, 255, 0.4);
+  box-shadow: 0 0 18px rgba(232, 28, 255, 0.35);
+}

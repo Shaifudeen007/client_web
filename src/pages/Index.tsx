@@ -12,6 +12,8 @@ import Quote from "@/components/Quote";
 import Loader from "@/components/Loader";
 import Laptop from "@/components/Laptop";
 import Hyperspeed from "@/components/Hyperspeed";
+import CollegeSection from "@/components/CollegeSection";
+
 
 const Index: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +55,7 @@ const Index: React.FC = () => {
             <Awards />
             <Testimonials />
             <Laptop />
+            <CollegeSection />
             <Quote />
             <ContactSection />
             <Footer />
